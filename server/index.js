@@ -2,7 +2,6 @@ import express from "express";
 import helmet from "helmet";
 import cors from "cors";
 import dotenv from "dotenv";
-
 import authRoutes from "./routes/auth_Route.js"; // Make sure the path is correct
 import mongoose from "mongoose";
 
