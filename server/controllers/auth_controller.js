@@ -1,8 +1,8 @@
 import bcryptjs from "bcryptjs";
 import { User } from "../models/user.model.js";
 import { generateTandSetC } from "../utils/generateTandSetC.js";
-import { sendVerification, sendWelcomeEmail } from "../utils/emails.js";
-
+import { sendPasswordResetEmail, sendVerification, sendWelcomeEmail } from "../utils/emails.js";
+import crypto from "crypto";
 export const signUp = async (req, res) => {
  const { email, name, password } = req.body;
 
@@ -117,4 +117,23 @@ export const logIn = async (req, res) => {
 export const logOut = async (req, res) => {
  res.clearCookie("token");
  res.status(200).json({ success: true, message: "logged out successfully" });
+};
+
+export const forgotPassword = async (req, res) => {
+ const { email } = req.body;
+ try {
+  const user = await User.findOne({ email });
+  const resetToken = crypto.randomBytes(20).toString("hex");
+  const resetTokenExpires = Date.now() + 1 * 60 * 60;
+
+  user.resetPasswordToken = resetToken;
+  user.resetPasswordExpiresAt = resetTokenExpires;
+  await user.save();
+
+  await sendPasswordResetEmail(user.email, `${process.env.URL}/forgot-password/${resetToken}`);
+
+  res.status(200).json({ success: true, message: "password reset successfully" });
+ } catch (error) {
+  console.log(error);
+ }
 };
