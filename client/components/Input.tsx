@@ -1,0 +1,21 @@
+import React from "react";
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+ icon: React.ElementType; // For passing the icon component
+}
+
+const Input: React.FC<InputProps> = ({ icon: Icon, ...props }) => {
+ return (
+  <div className="relative  p-4">
+   <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+    <Icon className="size-5 ml-4 text-green-500" />
+   </div>
+   <input
+    {...props}
+    className="w-full  p-3 pl-10 bg-gray-800 bg-opacity-50 border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-500 text-white placeholder-gray-400 transition duration-200"
+   />
+  </div>
+ );
+};
+
+export default Input;
