@@ -6,9 +6,9 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 
 const Input: React.FC<InputProps> = ({ icon: Icon, ...props }) => {
  return (
-  <div className="relative  p-4">
+  <div className="relative  py-4">
    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-    <Icon className="size-5 ml-4 text-green-500" />
+    <Icon className="size-5  text-green-500" />
    </div>
    <input
     {...props}
