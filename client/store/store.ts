@@ -2,9 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 import { AuthState } from "@/types";
 
-const URL = "http://localhost:3000";
+const URL = "http://localhost:5000"; // Ensure this matches your server's port
 axios.defaults.withCredentials = true;
-// Define the user data type
 
 // Create the Zustand store
 export const AuthStore = create<AuthState>((set) => ({
@@ -14,17 +13,18 @@ export const AuthStore = create<AuthState>((set) => ({
  isLoading: false,
  isChecking: false,
 
- signup: async (email: string, name: string, password: string) => {
+ signUp: async (email: string, name: string, password: string) => {
   set({ isLoading: true, error: null });
 
   try {
-   const res = await axios.post(`${URL}/signup`, { email, password, name });
-   set({ user: res.data.user, isAuthenticated: true, isLoading: false });
+   const response = await axios.post(`${URL}/auth/signup`, { email, password, name }); // Corrected endpoint
+   set({ user: response.data.user, isAuthenticated: true, isLoading: false });
   } catch (error: any) {
    set({
     error: error.response?.data?.message || "An error occurred",
     isLoading: false,
    });
+   throw error;
   }
  },
 }));

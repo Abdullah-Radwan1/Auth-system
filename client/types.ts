@@ -11,5 +11,5 @@ export type AuthState = {
  error: string | null;
  isLoading: boolean;
  isChecking: boolean;
- signup: (email: string, name: string, password: string) => Promise<void>;
+ signUp: (email: string, name: string, password: string) => Promise<void>;
 };
