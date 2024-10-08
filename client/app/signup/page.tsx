@@ -1,25 +1,28 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Input from "@/components/Input";
 import { Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import PasswordStrengthMeter from "@/components/PasswordMeter";
-import { AuthStore } from "@/store/store";
+import { useAuthStore } from "@/store/store";
 import { useRouter } from "next/navigation";
 
 const Signup = () => {
- const { isAuthenticated, isChecking, isLoading, signUp, error } = AuthStore();
+ const { isAuthenticated, isChecking, isLoading, signUp, error } = useAuthStore();
+
  const [name, setName] = useState("");
  const [email, setEmail] = useState("");
  const [password, setPassword] = useState("");
  const router = useRouter();
-
- const handleSignUp = async (e) => {
+ if (isAuthenticated) {
+  router.push("/");
+  return;
+ }
+ const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault(); // Prevent default form submission behavior
-
   try {
-   await signUp(email, password, name);
+   await signUp(name, email, password);
    router.push("/verification"); // Redirect after successful sign up
   } catch (error) {
    console.log(error);

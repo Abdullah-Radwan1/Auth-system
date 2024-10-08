@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
-import FloatingShape from "@/components/Background";
+import { Toaster } from "react-hot-toast";
+import Provider from "@/store/Provider";
 
 export const metadata: Metadata = {
  title: "Create Next App",
@@ -15,7 +15,12 @@ export default function RootLayout({
 }>) {
  return (
   <html lang="en">
-   <body className="min-h-screen  flex items-center justify-center ">{children}</body>
+   <body className="min-h-screen  flex items-center justify-center ">
+    <Provider>
+     {children}
+     <Toaster />
+    </Provider>
+   </body>
   </html>
  );
 }

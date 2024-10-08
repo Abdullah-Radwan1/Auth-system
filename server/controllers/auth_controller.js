@@ -9,7 +9,7 @@ import {
 } from "../utils/emails.js";
 import crypto from "crypto";
 export const signUp = async (req, res) => {
- const { email, name, password } = req.body;
+ const { name, email, password } = req.body;
 
  try {
   // Check if all fields are provided
@@ -32,9 +32,9 @@ export const signUp = async (req, res) => {
 
   // Create and save new user
   const user = new User({
+   name,
    email,
    password: hashedPassword,
-   name,
    verificationToken,
    verificationTokenExpiresAt,
   });
