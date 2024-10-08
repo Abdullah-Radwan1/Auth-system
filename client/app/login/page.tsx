@@ -4,21 +4,21 @@ import { motion } from "framer-motion";
 import Input from "@/components/Input";
 import { Lock, Mail } from "lucide-react";
 import Link from "next/link";
-import { useAuthStore } from "@/store/store"; // Use Zustand hook
+import { useAuthStore } from "@/store/store"; // Zustand hook
 import { useRouter } from "next/navigation";
 
-const Page = () => {
+const Page: React.FC = () => {
  const router = useRouter();
- const [email, setEmail] = useState("");
- const [password, setPassword] = useState("");
+ const [email, setEmail] = useState<string>(""); // Specify type explicitly
+ const [password, setPassword] = useState<string>(""); // Specify type explicitly
 
- const { login, user, isLoading, isAuthenticated, error } = useAuthStore(); // Use Zustand hook
- console.log("login component ");
+ const { login, isAuthenticated, error } = useAuthStore(); // Zustand store
+ console.log(isAuthenticated);
  useEffect(() => {
   if (isAuthenticated) {
    router.push("/");
   }
- }, [isAuthenticated, router]); // Redirect only inside useEffect
+ }, [isAuthenticated, router]);
 
  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();

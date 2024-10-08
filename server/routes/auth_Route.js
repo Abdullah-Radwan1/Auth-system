@@ -19,7 +19,7 @@ router.post("/login", logIn); // Login route
 router.post("/logout", logOut); // Logout route
 
 //password
-router.post("/forgot-password", forgotPassword); // Logout route
+router.post("/forgotpassword", forgotPassword); // Logout route
 router.post("/reset-password/:token", resetPassword);
 sendResetSuccessEmail;
 export default router;

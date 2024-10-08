@@ -16,10 +16,8 @@ export default function RootLayout({
  return (
   <html lang="en">
    <body className="min-h-screen  flex items-center justify-center ">
-    <Provider>
-     {children}
-     <Toaster />
-    </Provider>
+    {children}
+    <Toaster />
    </body>
   </html>
  );

@@ -20,4 +20,5 @@ export type AuthState = {
  verification: (code: string) => Promise<{ user: UserData }>;
  checkAuth: () => Promise<void>;
  logout: () => Promise<void>;
+ forgotPassword: (email: string) => Promise<void>;
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useAuthStore } from "@/store/store";
+import Link from "next/link";
 
 import { useEffect } from "react";
 
@@ -9,7 +10,6 @@ export default function Home() {
 
  const handleLogout = () => {
   logout();
-  console.log(isAuthenticated);
  };
  useEffect(() => {
   checkAuth();
@@ -18,9 +18,9 @@ export default function Home() {
 
  return (
   <>
-   <button onClick={handleLogout} className="btn btn-ghost">
+   <Link href={"/login"} onClick={handleLogout} className="btn btn-ghost">
     logout
-   </button>
+   </Link>
   </>
  );
 }

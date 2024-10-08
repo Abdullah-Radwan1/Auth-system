@@ -32,23 +32,29 @@ export const useAuthStore = create<AuthState>((set) => ({
   set({ isLoading: true, isAuthenticated: false });
   try {
    const response = await axios.post(`${URL}/login`, { email, password });
-   set({ user: response.data.user, isLoading: false, isAuthenticated: true });
-   console.log(response);
+
+   // Assuming the response contains a token
+   document.cookie = `token=${response.data.token}; path=/`; // Set the token in the cookie
+
+   set({ user: response.data.user, isAuthenticated: true, isLoading: false });
   } catch (error: any) {
    set({ error: error.response?.data?.message, isLoading: false });
    throw error;
   }
  },
+
  logout: async () => {
   set({ isLoading: true, error: null });
   try {
    await axios.post(`${URL}/logout`);
+   document.cookie = "token=; Max-Age=0; path=/"; // Clear the cookie on logout
    set({ user: null, isAuthenticated: false, error: null, isLoading: false });
   } catch (error) {
    set({ error: "Error logging out", isLoading: false });
    throw error;
   }
  },
+
  verification: async (code: string) => {
   set({ isLoading: true, error: null });
   try {
@@ -86,7 +92,7 @@ export const useAuthStore = create<AuthState>((set) => ({
  resetPassword: async (token: string, password: string) => {
   set({ isLoading: true, error: null });
   try {
-   const response = await axios.post(`${URL}/forgotPassword`, { token, password });
+   const response = await axios.post(`${URL}/forgotpassword`, { token, password });
    set({ isLoading: false });
   } catch (error: any) {
    set({
