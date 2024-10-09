@@ -6,19 +6,24 @@ import authRoutes from "./routes/auth_Route.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
-const PORT = process.env.PORT || 5000;
-const CORS = process.env.CORS;
+// Load environment variables
 dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+const CORS = process.env.CORS; // Ensure this is your frontend origin
 
 // Initialize express app
 const app = express();
 
-// Middleware
-// {
-//           origin: `${CORS}`,
-//           credentials: true,
-//          }),
-app.use(cors()); // Update to your frontend origin
+// CORS Middleware
+app.use(
+ cors({
+  origin: CORS, // Use the frontend origin from environment variables
+  credentials: true, // Allow credentials such as cookies to be sent
+ }),
+);
+
+// Other middleware
 app.use(express.json());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
