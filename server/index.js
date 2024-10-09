@@ -7,18 +7,18 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
 const PORT = process.env.PORT || 5000;
+const CORS = process.env.CORS;
 dotenv.config();
 
 // Initialize express app
 const app = express();
 
 // Middleware
-app.use(
- cors({
-  origin: "https://auth-system-git-main-abdallahs-projects-35c1f72a.vercel.app",
-  credentials: true,
- }),
-); // Update to your frontend origin
+// {
+//           origin: `${CORS}`,
+//           credentials: true,
+//          }),
+app.use(cors()); // Update to your frontend origin
 app.use(express.json());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
