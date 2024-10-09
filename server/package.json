@@ -2,10 +2,10 @@
  "name": "mern-auth",
  "version": "1.0.0",
  "description": "",
- "main": "server/index.js",
+ "main": "index.js",
  "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "nodemon server/index.js"
+  "dev": "nodemon index.js"
  },
  "keywords": [],
  "type": "module",
