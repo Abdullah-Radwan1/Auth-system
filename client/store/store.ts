@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { AuthState } from "@/types";
 
-const URL = "auth-system-taupe.vercel.app"; // Ensure this matches your server's port
+const URL = "/auth"; // Ensure this matches your server's port
 axios.defaults.withCredentials = true;
 
 // Create the Zustand store
