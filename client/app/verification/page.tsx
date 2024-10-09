@@ -76,6 +76,7 @@ const Page = () => {
       {code.map((digit, index) => (
        <input
         key={index}
+        //@ts-ignore
         ref={(el) => (inputRefs.current[index] = el)}
         type="text"
         maxLength={1} // Single character per input
