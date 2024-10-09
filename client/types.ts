@@ -21,4 +21,5 @@ export type AuthState = {
  checkAuth: () => Promise<void>;
  logout: () => Promise<void>;
  forgotPassword: (email: string) => Promise<void>;
+ resetPassword: (token: any, password: string) => Promise<void>;
 };

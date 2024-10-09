@@ -20,6 +20,6 @@ router.post("/logout", logOut); // Logout route
 
 //password
 router.post("/forgotpassword", forgotPassword); // Logout route
-router.post("/reset-password/:token", resetPassword);
+router.post("/resetPassword/:token", resetPassword);
 sendResetSuccessEmail;
 export default router;
