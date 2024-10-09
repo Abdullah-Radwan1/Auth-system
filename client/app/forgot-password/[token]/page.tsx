@@ -25,7 +25,7 @@ const page = () => {
    await resetPassword(token, password);
    toast.success("Password reset successfully, redirecting to login page...");
    setTimeout(() => {
-    router.push("login");
+    router.push("/login");
    }, 1500);
    clearTimeout;
   } catch (error: any) {

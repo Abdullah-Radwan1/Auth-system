@@ -5,6 +5,7 @@ export type UserData = {
  isVerified: boolean;
  message: string;
  error: string;
+ createdAt: any;
 };
 
 // Define the store state and actions
