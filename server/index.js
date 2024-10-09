@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "http://localhost:3000", credentials: true })); // Match the frontend port
+app.use(cors({ origin: "auth-system-taupe.vercel.app", credentials: true })); // Match the frontend port
 app.use(express.json());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.urlencoded({ extended: false }));
