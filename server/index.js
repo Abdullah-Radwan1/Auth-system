@@ -13,9 +13,14 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors({ origin: "https://auth-back-iota.vercel.app", credentials: true })); // Match the frontend port
+app.use(
+ cors({
+  origin: "https://auth-system-git-main-abdallahs-projects-35c1f72a.vercel.app",
+  credentials: true,
+ }),
+); // Update to your frontend origin
 app.use(express.json());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
