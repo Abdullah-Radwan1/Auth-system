@@ -2,8 +2,8 @@ import { create } from "zustand";
 import axios from "axios";
 import { AuthState } from "@/types";
 
-//
-const URL = "https://auth-back-iota.vercel.app/auth"; // Ensure this matches your server's port
+//"http://localhost:5000"
+const URL = "https://auth-back-iota.vercel.app/auth"; //"https://auth-back-iota.vercel.app/auth"
 axios.defaults.withCredentials = true;
 
 // Create the Zustand store
