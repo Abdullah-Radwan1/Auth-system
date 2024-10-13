@@ -19,7 +19,7 @@ const app = express();
 app.use(
  cors({
   //"http://localhost:3000"
-  origin: "http://localhost:3000", // Use the frontend origin from environment variables
+  origin: CORS, // Use the frontend origin from environment variables
   credentials: true, // Allow credentials such as cookies to be sent
  }),
 );
