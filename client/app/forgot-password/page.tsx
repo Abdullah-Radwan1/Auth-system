@@ -8,7 +8,6 @@ import Link from "next/link";
 const page = () => {
  const [email, setEmail] = useState("");
  const [isSubmitted, setIsSubmitted] = useState(false);
- console.log(email);
  const { isLoading, forgotPassword } = useAuthStore();
  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();

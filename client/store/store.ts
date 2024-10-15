@@ -2,7 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import { AuthState } from "@/types";
 
-//"http://localhost:5000"
+//"http://localhost:5000/auth"
 const URL = "https://auth-back-iota.vercel.app/auth"; //"https://auth-back-iota.vercel.app/auth"
 axios.defaults.withCredentials = true;
 
@@ -33,10 +33,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   set({ isLoading: true, isAuthenticated: false });
   try {
    const response = await axios.post(`${URL}/login`, { email, password });
-
-   // Assuming the response contains a token
-   document.cookie = `token=${response.data.token}; path=/`; // Set the token in the cookie
-
+   // No need to manually set the cookie here, it's done by the backend
    set({ user: response.data.user, isAuthenticated: true, isLoading: false });
   } catch (error: any) {
    set({ error: error.response?.data?.message, isLoading: false });
@@ -71,10 +68,11 @@ export const useAuthStore = create<AuthState>((set) => ({
   set({ isChecking: true });
 
   try {
-   const response = await axios.get(`${URL}/checkauth`);
+   const response = await axios.get(`${URL}/checkauth`); // Token cookie is automatically sent
    set({ user: response.data.user, isAuthenticated: true, isChecking: false });
   } catch (error) {
    console.log(error);
+   set({ isChecking: false });
   }
  },
  forgotPassword: async (email: string) => {
