@@ -18,7 +18,7 @@ const app = express();
 // CORS Middleware
 app.use(
  cors({
-  origin: CORS, // Use the frontend origin from environment variables   //"http://localhost:3000"
+  origin: "https://auth-system-taupe.vercel.app", // Use the frontend origin from environment variables   //"http://localhost:3000"
   credentials: true, // Allow credentials such as cookies to be sent
  }),
 );
