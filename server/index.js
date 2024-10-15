@@ -18,8 +18,7 @@ const app = express();
 // CORS Middleware
 app.use(
  cors({
-  //"http://localhost:3000"
-  origin: CORS, // Use the frontend origin from environment variables
+  origin: CORS, // Use the frontend origin from environment variables   //"http://localhost:3000"
   credentials: true, // Allow credentials such as cookies to be sent
  }),
 );
