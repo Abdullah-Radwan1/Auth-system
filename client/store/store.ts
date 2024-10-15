@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthState } from "@/types";
 
 //"http://localhost:5000/auth"
-const URL = "https://auth-back-iota.vercel.app/auth"; //"https://auth-back-iota.vercel.app/auth"
+const URL = "https://auth-back-iota.vercel.app/auth";
 axios.defaults.withCredentials = true;
 
 // Create the Zustand store
