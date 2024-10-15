@@ -10,7 +10,6 @@ import cookieParser from "cookie-parser";
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const CORS = process.env.CORS || "https://auth-system-taupe.vercel.app"; // Ensure this is your frontend origin
 
 // Initialize express app
 const app = express();
@@ -18,7 +17,7 @@ const app = express();
 // CORS Middleware
 app.use(
  cors({
-  origin: CORS, // Use the frontend origin from environment variables  "https://auth-system-taupe.vercel.app"
+  origin: true, // Allow requests from any origin
   credentials: true, // Allow credentials such as cookies to be sent
  }),
 );
