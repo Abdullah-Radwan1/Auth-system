@@ -29,14 +29,18 @@ export const useAuthStore = create<AuthState>((set) => ({
    throw error;
   }
  },
- login: async (email: string, password: string) => {
-  set({ isLoading: true, isAuthenticated: false });
+ login: async (email, password) => {
+  set({ isLoading: true, error: null });
   try {
    const response = await axios.post(`${URL}/login`, { email, password });
-   // No need to manually set the cookie here, it's done by the backend
-   set({ user: response.data.user, isAuthenticated: true, isLoading: false });
+   set({
+    isAuthenticated: true,
+    user: response.data.user,
+    error: null,
+    isLoading: false,
+   });
   } catch (error: any) {
-   set({ error: error.response?.data?.message, isLoading: false });
+   set({ error: error.response?.data?.message || "Error logging in", isLoading: false });
    throw error;
   }
  },
