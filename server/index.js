@@ -18,8 +18,11 @@ const app = express();
 // CORS Middleware
 app.use(
  cors({
-  origin: CORS, // Use the frontend origin from environment variables  "https://auth-system-taupe.vercel.app"
+  origin: CORS, // Use the frontend origin from environment variables
   credentials: true, // Allow credentials such as cookies to be sent
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"], // Explicitly allow these methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers
+  preflightContinue: true,
  }),
 );
 
@@ -28,6 +31,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Preflight request handling (OPTION method)
+app.options("*", cors()); // Allow preflight requests for all routes
 
 // Mount the routes
 app.use("/auth", authRoutes);
